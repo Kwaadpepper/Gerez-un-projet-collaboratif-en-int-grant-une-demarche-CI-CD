@@ -48,3 +48,23 @@ jobs:
           coverage-summary-path: ./front/coverage/bobapp/coverage-summary.json
           badges-directory: ./front/.badges
           protected-branches: '["main"]'
+
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: ./front/coverage/bobapp/coverage-cobertura.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '60 80'
+
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          recreate: true
+          path: ./front/code-coverage-results.md
