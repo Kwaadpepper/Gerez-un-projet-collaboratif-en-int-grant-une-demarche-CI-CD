@@ -68,3 +68,5 @@ jobs:
         with:
           recreate: true
           path: ./front/code-coverage-results.md
+          header: |
+            chore: update code coverage results ${{ github.sha }}
