@@ -90,7 +90,13 @@ jobs:
           name: jacoco-report
           path: back/target/site/jacoco
 
-      # Étape 8 : Générer le rapport de test Github
+      # Étape 8 : Générer le badge de couverture Jacoco
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          jacoco-csv-file: back/target/site/jacoco/jacoco.csv
+
+      # Étape 9 : Générer le rapport de test Github
       - name: Generate Github Test Report
         uses: phoenix-actions/test-reporting@v15
         # ID de l'étape pour pouvoir l'utiliser dans d'autres jobs
@@ -108,7 +114,7 @@ jobs:
           # Format du rapport de test à utiliser
           reporter: java-junit
 
-      # Étape 9 : Lire les variables de sortie
+      # Étape 10 : Lire les variables de sortie
       - name: Print backend report URL
         run: |
           echo "url is ${{ steps.test-report-backend.outputs.runHtmlUrl }}"
