@@ -80,6 +80,7 @@ jobs:
       # Étape 8 : Analyser le rapport Checkstyle
       - name: Process Checkstyle Report
         uses: jwgmeligmeyling/checkstyle-github-action@master
+        if: github.ref_name != 'main'
         with:
           name: Backend Linting Report
           title: Backend Linting Report

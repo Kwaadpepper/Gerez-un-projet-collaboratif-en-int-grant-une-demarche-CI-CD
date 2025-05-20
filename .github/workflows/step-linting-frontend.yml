@@ -72,6 +72,7 @@ jobs:
       # Étape 8 : Analyser le rapport eslint
       - name: Process ESLint report
         uses: ataylorme/eslint-annotate-action@v2
+        if: github.ref_name != 'main'
         with:
           report-json: front/reports/eslint_report.json
           fail-on-warning: false

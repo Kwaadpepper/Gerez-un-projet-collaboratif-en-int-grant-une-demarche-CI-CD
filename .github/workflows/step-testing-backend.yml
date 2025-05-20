@@ -98,7 +98,7 @@ jobs:
         # Exécuter cette étape même si les tests échouent
         # pour pouvoir générer le rapport de test
         # et l'envoyer à Github
-        if: success() || failure()
+        if: (success() || failure()) && github.ref_name != 'main'
         with:
           # Le nom du rapport qui sera affiché dans Github
           name: Backend Tests Report
@@ -109,5 +109,6 @@ jobs:
 
       # Étape 9 : Lire les variables de sortie
       - name: Print backend report URL
+        if: success() && github.ref_name != 'main'
         run: |
           echo "url is ${{ steps.test-report-backend.outputs.runHtmlUrl }}"
