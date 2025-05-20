@@ -1,5 +1,7 @@
 package com.openclassrooms.bobapp.controller;
 
+import java.util.Random;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,9 @@ public class JokeController {
     }
 
     @GetMapping()
-    public ResponseEntity<?> getRandomJoke() {
+    public ResponseEntity<?> getRandomJoke() throws InterruptedException {
+        Random generator = new Random();
+        Thread.sleep((long) (generator.nextDouble() * 1000));
         return ResponseEntity.ok(this.jokeService.getRandomJoke());
     }
 }
