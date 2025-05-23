@@ -123,3 +123,7 @@ docker run --network bobapp -p 8081:80 --name bobapp-front -d bobapp-front
 ```
 
 **NOTE**: `bobapp-back` is mentioned in `/front/nginx.conf` as proxy pass. So you should change this or make sure the backend container is run with the `--name bobapp-back` option and that both are running with the `--network bobapp` option.
+
+---
+
+Nous allons générer un nouveau **TAG 0.0.1-rc.2**
